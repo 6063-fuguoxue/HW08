@@ -1,3 +1,9 @@
+let sound1;
+
+function preload() {
+  sound1 = loadSound("./va11halla.mp3");
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
