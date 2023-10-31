@@ -1,10 +1,12 @@
-let mImage;
+let mImage, mImage_copy, ghost;
 let xOff, yOff;
-// let lastClickX = 0;
+let lastClickX = 0;
 
 // Use DOM elements to help determine the tolerance range of each color
 // let picker;
-let SIMILARITY_VALUE = 28;
+let SIMILARITY_VALUE = 28; // This is a good similarity value that I tested out
+// let slider_ghost_x, slider_ghost_y, slider_ghost_w;
+let ghost_x = 591, ghost_y = 132, ghost_w;
 
 // let slider_similarity;
 // Define Modriaan Color objects
@@ -16,15 +18,19 @@ let Mondriaan_Black = { r: 22, g: 27, b: 2 };
 
 function preload() {
   mImage = loadImage("./imgs/Piet_Mondriaan.jpg");
+  mImage_copy = loadImage("./imgs/Piet_Mondriaan.jpg");
+  ghost = loadImage("./imgs/ghost-lamp.gif");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   pixelDensity(1); 
   mImage.resize(0, height); 
-  noLoop();
-  xOff = (width - mImage.width) / 2;
-  yOff = (height - mImage.height) / 2;
+  mImage_copy.resize(0, height); 
+  
+  // noLoop();
+  xOff = (width - mImage_copy.width) / 2;
+  yOff = (height - mImage_copy.height) / 2;
 
   // Place color picker on canvas
   // picker = createColorPicker(color(0));
@@ -32,17 +38,39 @@ function setup() {
   // picker.style("width", width/5 + "px");
   // frameRate(4);
 
-  // Place slider to change the similarity_value
-  // slider_similarity = createSlider(0, 100, 30, 1);
+  // Place a slider to try out different similarity_value
+  // let slider_similarity = createSlider(0, 100, 28, 1);
   // slider_similarity.position(10, 10);
   // slider_similarity.style("width", width - 20 + "px");
+
+  // Place two sliders to control the position of ghost cat image
+  // slider_ghost_x = createSlider(0, width - ghost.width, 591, 1);
+  // slider_ghost_x.position(10, 50);
+  // slider_ghost_x.style("width", 500 + "px");
+  // slider_ghost_y = createSlider(0, height - ghost.height, 132, 1);
+  // slider_ghost_y.position(10, 100);
+  // slider_ghost_y.style("width", 500 + "px");
+  // slider_ghost_w = createSlider(0, 1000, ghost.width, 1);
+  // slider_ghost_w.position(10, 150);
+  // slider_ghost_w.style("width", 500 + "px");
 }
 
 function draw() {
   background(0);
   // SIMILARITY_VALUE = slider_similarity.value();
+  // ghost_x = slider_ghost_x.value();
+  // ghost_y = slider_ghost_y.value();
+  // ghost_w = slider_ghost_w.value();
+  // ghost_w = map(mouseX, 0, width, 28, ghost.width);
+  
+  // ghost.resize(ghost_w, 0);
+  
+  // print(SIMILARITY_VALUE);
+  // print("X: ", ghost_x, ", Y: ", ghost_y);
+  print(ghost.width);
 
   mImage.loadPixels();
+  mImage_copy.loadPixels();
 
   for (let y = 0; y < mImage.height; y+=1) {
     for (let x = 0; x < mImage.width; x+=1) {
@@ -70,11 +98,17 @@ function draw() {
     }
   }
 
-  mImage.updatePixels(); // Update all the pixels
+  mImage_copy.updatePixels(); // Update all the pixels
+
+  // ghost_x = map(ghost_x, 0, 1920, 0, width);
+  // ghost_y = map(ghost_y, 0, 1080, 0, height);
+  // ghost_w = map(ghost.width, 0, 1080, 0, width);
+  // ghost.resize(ghost_w, 0);
 
   push();
+  image(ghost, ghost_x, ghost_y);
   translate(xOff, yOff);
-  image(mImage, 0, 0);
+  image(mImage_copy, 0, 0);
   pop();
 }
 
@@ -105,38 +139,31 @@ function distance(r1, g1, b1, r2, g2, b2) {
   return sqrt(0.3*pow((r1 - r2), 2) + 0.59*pow((g1 - g2), 2) + 0.11*pow((b1 - b2), 2));
 }
 
-function changeRed(pixelIndex) { // If the pixel is Modriaan red, change its color
-  mImage.pixels[pixelIndex + 0] = 128; // new R value
-  mImage.pixels[pixelIndex + 1] = 211; // new G value
-  mImage.pixels[pixelIndex + 2] = 155; // new B value
+function changeRed(pixelIndex) { // If the pixel is Modriaan red, change it to transparent
+  mImage_copy.pixels[pixelIndex + 3] = 0;
 
 }
 
 function changeBlue(pixelIndex) { // If the pixel is Modriaan red, change its color
-  mImage.pixels[pixelIndex + 0] = 248; // new R value
-  mImage.pixels[pixelIndex + 1] = 112; // new G value
-  mImage.pixels[pixelIndex + 2] = 96; // new B value
+  mImage_copy.pixels[pixelIndex + 0] = 248; // new R value
+  mImage_copy.pixels[pixelIndex + 1] = 112; // new G value
+  mImage_copy.pixels[pixelIndex + 2] = 96; // new B value
 }
 
 function changeYellow(pixelIndex) { // If the pixel is Modriaan red, change its color
-  mImage.pixels[pixelIndex + 0] = 184; // new R value
-  mImage.pixels[pixelIndex + 1] = 184; // new G value
-  mImage.pixels[pixelIndex + 2] = 243; // new B value
+  mImage_copy.pixels[pixelIndex + 0] = 184; // new R value
+  mImage_copy.pixels[pixelIndex + 1] = 184; // new G value
+  mImage_copy.pixels[pixelIndex + 2] = 243; // new B value
 }
 
 function changeBlack(pixelIndex) { // If the pixel is Modriaan red, change its color
   // Change color upon click
-  // let val = map(lastClickX, 0, width, 0, 255);
-  // mImage.pixels[pixelIndex + 0] = val; // new R value
-  // mImage.pixels[pixelIndex + 1] = val; // new G value
-  // mImage.pixels[pixelIndex + 2] = val; // new B value
-
-  // Simple color change
-  mImage.pixels[pixelIndex + 0] = 16; // new R value
-  mImage.pixels[pixelIndex + 1] = 37; // new G value
-  mImage.pixels[pixelIndex + 2] = 66; // new B value
+  let val = map(lastClickX, 0, width, 0, 255);
+  mImage_copy.pixels[pixelIndex + 0] = val; // new R value
+  mImage_copy.pixels[pixelIndex + 1] = val; // new G value
+  mImage_copy.pixels[pixelIndex + 2] = val; // new B value
 }
 
-// function mouseClicked() {
-//   lastClickX = mouseX;
-// }
+function mouseClicked() {
+  lastClickX = mouseX;
+}
