@@ -38,10 +38,10 @@ After consulting Thiago, I learned that it can be done in a very simple way: tur
 ## Unexpect finding: load image in low resolution
 When setting the initial similarity value to 28, I once miswrote the GIF image width to 28. The GIF file was loaded with a width of 28 px but then stretched to fit the red square size. The resulting image is a low-res version of the GIF image, which is interesting to me because I like pixel art. This effect may be useful for my later creative coding project so I record it down here. 
 
+![](ghost-lowres.png)
+
 ## What happens if I run my sketch on images of different Mondrian paintings?
 If I run my sketch on images of different Mondrian paintings, it will still detect Mondrian Red, Yellow, Blue, and Black well. In fact, by adjusting the similarity value in my code, it can detect even more colors other than these four. However, I may need to reconsider where to put my GIF image. 
-
-![](ghost-lowres.png)
 
 # HW08B: Visualizing Sound
 
