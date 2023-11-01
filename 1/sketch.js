@@ -1,9 +1,9 @@
 let song;
 let samples;
 let red = 0, green = 0, blue = 0;
-let glassBuffer = 15;
+let glassBuffer = 15; // Prevent bubbles from sticking out of the cocktail glass
 let bubble_x, bubble_y;
-let offSet = 100;
+let offSet = 100; // Offset of the cocktail glass position and bubbles positions
 
 function preload() {
   song = loadSound("./va11halla.mp3");
@@ -29,13 +29,15 @@ function setup() {
 
 
 function draw() {
-  background(red, green, blue, 20);
+  background(red, green, blue, 20); // Set alpha value to 20 to create simple fading effects
   if (song.isPlaying()) {
     noStroke();
     let tPos = song.currentTime() / song.duration(); // Current time position of the playing song
     let currentSampleIndex = floor(tPos*samples.length);
-    let val = samples[currentSampleIndex];
-    if (val > 0.2) {
+    let val = samples[currentSampleIndex]; // Get current sample value
+
+    // Categorize the sample into one of the three categories below, based on its value
+    if (val > 0.2) { // If sample value > 0.2, generate a line
       let lineStart_x = random(0, width);
       let lineStart_y = random(0, height/3*2);
       push();
@@ -45,8 +47,7 @@ function draw() {
       strokeWeight(5);
       line(0, 0, val*400, 0);
       pop();
-
-    } else if (val < 0) {
+    } else if (val < 0) { // If sample value < 0, generate a square
       let rectStart_x = random(0, width);
       let rectStart_y = random(0, height/3*2);
       push();
@@ -58,7 +59,7 @@ function draw() {
       fill(random(255),random(255),random(255),100);
       rect(0, 0, val*300, val*300);
       pop();
-    } else {
+    } else { // Else, generate a circle
       let circle_d = val*200;
       let circle_x = random(0, width);
       let circle_y = random(height/3*2, height);
@@ -66,15 +67,18 @@ function draw() {
       ellipse(circle_x, circle_y, circle_d, circle_d);
     }
   }
+
+  // After drawing elements on the background, draw the cocktail glass
   drawGlass();
 }
 
+// Draw the cocktail glass
 function drawGlass() {
   push();
   translate(width/2, height/2);
   translate(0, offSet);
 
-  // Draw the fruit
+  // Draw the orange
   strokeWeight(5);
   stroke(255, 255, 0, 200);
   fill(255, 165, 0, 200);
@@ -109,6 +113,7 @@ function changeBG() {
   blue = random(255);
 }
 
+// Generate 10 bubbles upon every click on the DOM button "generate bubbles"
 function generateBubbles() {
   push();
   translate(width/2, height/2);
@@ -119,6 +124,7 @@ function generateBubbles() {
   pop();
 }
 
+// Randomly generate a bubble in the range of the cocktail triangle, without sticking out of the glass
 function bubble() {
   bubble_x = random(-200, 200);
   if (bubble_x < 0) {
@@ -135,9 +141,9 @@ function bubble() {
 }
 
 function keyReleased() {
-  if (key == "s") {
+  if (key == "s") { // Press "s" to stop the song
     song.stop();
-  } else if (key == "p") {
+  } else if (key == "p") { // Press "p" to play or pause the song
     if (song.isPlaying()) {
       song.pause();
     } else {

@@ -7,7 +7,7 @@ let SIMILARITY_VALUE = 28; // This is a good similarity value that I tested out
 // let slider_ghost_offx, slider_ghost_offy, slider_ghost_w;
 let slider_similarity, slider_change_black;
 
-// Define Modriaan Color objects
+// Define Mondriaan Color objects
 let Mondriaan_Red = { r: 218, g: 63, b: 39 };
 let Mondriaan_Blue = { r: 0, g: 65, b: 120 };
 let Mondriaan_Yellow = { r: 236, g: 189, b: 72 };
@@ -34,7 +34,7 @@ function setup() {
   }
   
 
-  // Offset of Modriaan
+  // Offset of Mondriaan
   xOff = (width - mImage_copy.width) / 2;
   yOff = (height - mImage_copy.height) / 2;
 
@@ -138,24 +138,24 @@ function distance(r1, g1, b1, r2, g2, b2) {
   return sqrt(0.3*pow((r1 - r2), 2) + 0.59*pow((g1 - g2), 2) + 0.11*pow((b1 - b2), 2));
 }
 
-function changeRed(pixelIndex) { // If the pixel is Modriaan red, change it to transparent
+function changeRed(pixelIndex) { // If the pixel is Mondriaan red, change it to transparent
   mImage_copy.pixels[pixelIndex + 3] = 0;
 
 }
 
-function changeBlue(pixelIndex) { // If the pixel is Modriaan red, change its color
+function changeBlue(pixelIndex) { // If the pixel is Mondriaan red, change its color
   mImage_copy.pixels[pixelIndex + 0] = 248; // new R value
   mImage_copy.pixels[pixelIndex + 1] = 112; // new G value
   mImage_copy.pixels[pixelIndex + 2] = 96; // new B value
 }
 
-function changeYellow(pixelIndex) { // If the pixel is Modriaan red, change its color
+function changeYellow(pixelIndex) { // If the pixel is Mondriaan red, change its color
   mImage_copy.pixels[pixelIndex + 0] = 184; // new R value
   mImage_copy.pixels[pixelIndex + 1] = 184; // new G value
   mImage_copy.pixels[pixelIndex + 2] = 243; // new B value
 }
 
-function changeBlack(pixelIndex) { // If the pixel is Modriaan red, change its color
+function changeBlack(pixelIndex) { // If the pixel is Mondriaan red, change its color
   // Change color by using the second slider
   let val = slider_change_black.value();
   mImage_copy.pixels[pixelIndex + 0] = val; // new R value
