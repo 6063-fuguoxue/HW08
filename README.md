@@ -28,6 +28,8 @@ Therefore, I started to change the way of color detection. I searched the keywor
 
 I didn't use the Best Approach because it is too complex for a simple project like mine. I learned the RGB to CIELAB conversion before and I believe it involves matrix computation. Despite being not perfect, the Improved Approach is sufficient to detect Mondrian Red, Blue, Yellow, and Black. All I need to do is to figure out a good threshold value (similarity value). After trying with the slider that controls the similarity value, I found that 28 is a good value to go. 
 
+One thing to note is that I need to also handle the situation that a pixel is of none of the defined Mondrian colors. Previously, I used four if statements to detect Mondrian colors. However, when I changed the similarity value to a big number then to a small number again, the white pixels wouldn't return to white. Therefore, I changed the four separate if statements to a consecutive if-else statement. This solves the problem of white pixels not updating according to the similarity value. 
+
 ## "Replace" red square with an image
 Before consultation, I thought replacing a color block with an image was very difficult. This is because a color block looks like an integrity on canvas, but it is actually separated in the list of pixels stored in the computer. It is too tedious to resize the image and replace pixels line by line, let alone the noise in the Mondrian image due to imperfect color detection. 
 
