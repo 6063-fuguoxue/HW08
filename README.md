@@ -41,7 +41,7 @@ When setting the initial similarity value to 28, I once miswrote the GIF image w
 ![](ghost-lowres.png)
 
 ## What happens if I run my sketch on images of different Mondrian paintings?
-If I run my sketch on images of different Mondrian paintings, it will still detect Mondrian Red, Yellow, Blue, and Black well. In fact, by adjusting the similarity value in my code, it can detect even more colors other than these four. However, I may need to reconsider where to put my GIF image. 
+If I run my sketch on images of different Mondrian paintings, it will still detect Mondrian Red, Yellow, Blue, and Black well. In fact, by adjusting the similarity value in my code, it can detect even more colors other than these four. However, I may need to reconsider where to put my GIF image. I may also need to redefine the RGB values of Mondrian colors because they appear differently in different photographs. 
 
 # HW08B: Visualizing Sound
 
