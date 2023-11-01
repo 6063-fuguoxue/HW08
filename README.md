@@ -45,7 +45,7 @@ If I run my sketch on images of different Mondrian paintings, it will still dete
 
 # HW08B: Visualizing Sound
 
-In the Visualizing Sound project, I chose the song "Hopes And Dreams" from the VA-11 HALL-A - Complete Sound Collection. This album was created for one of my favorite video games called "VA-11 Hall-A: Cyberpunk Bartender Action". In the game, the player assumes the role of a bartender named Jill at "VA-11 Hall-A", a small dive bar in a dystopian downtown city in the future world. The game adopts a pixelated style and cyberpunk aesthetic. 
+In the Visualizing Sound project, I chose the song "Hopes And Dreams" from the VA-11 HALL-A - Complete Sound Collection. This album was created for one of my favorite video games called "[VA-11 Hall-A: Cyberpunk Bartender Action](https://store.steampowered.com/app/447530/VA11_HallA_Cyberpunk_Bartender_Action/)". In the game, the player assumes the role of a bartender named Jill at "VA-11 Hall-A", a small dive bar in a dystopian downtown city in the future world. The game adopts a pixelated style and cyberpunk aesthetic. 
 
 Since one of Jill's tasks is to serve drinks to customers and chat with them, I decided to draw a cocktail glass on canvas. I also wanted the cocktail to create some bubbles and give the feeling of being at VA-11 Hall-A drinking and chatting. The colors of the cocktail glass, the background, and the bubble generation can be controlled by DOM buttons. 
 
