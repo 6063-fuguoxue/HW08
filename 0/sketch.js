@@ -82,18 +82,26 @@ function draw() {
       }
       
       // Check if close to Mondriaan_Blue
-      if (isSimilar(pixelIndex, Mondriaan_Blue)) {
+      else if (isSimilar(pixelIndex, Mondriaan_Blue)) {
         changeBlue(pixelIndex);
       }
 
       // Check if close to Mondriaan_Yellow
-      if (isSimilar(pixelIndex, Mondriaan_Yellow)) {
+      else if (isSimilar(pixelIndex, Mondriaan_Yellow)) {
         changeYellow(pixelIndex);
       }
 
       // Check if close to Mondriaan_Black
-      if (isSimilar(pixelIndex, Mondriaan_Black)) {
+      else if (isSimilar(pixelIndex, Mondriaan_Black)) {
         changeBlack(pixelIndex);
+      }
+
+      // Else, remain the same color
+      else {
+        mImage_copy.pixels[pixelIndex + 0] = mImage.pixels[pixelIndex + 0]; // same R value
+        mImage_copy.pixels[pixelIndex + 1] = mImage.pixels[pixelIndex + 1]; // same G value
+        mImage_copy.pixels[pixelIndex + 2] = mImage.pixels[pixelIndex + 2]; // same B value
+        mImage_copy.pixels[pixelIndex + 3] = mImage.pixels[pixelIndex + 3]; // same A value
       }
     }
   }
